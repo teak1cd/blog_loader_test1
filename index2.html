@@ -39,7 +39,7 @@
             var articles = ["main", "week1_1", "week1_2","week3_1"];
             function article(art,l) {
                 if(l){
-                  document.getElementById("articles").innerHTML +="<div id="+art+" ></div>";
+                  document.getElementById("templates").innerHTML +="<div id="+art+" ></div>";
                   document.getElementById(art).innerHTML = document.getElementById("frame").contentDocument.body.innerHTML;
                 }
                 if(document.getElementById(art) === null){
