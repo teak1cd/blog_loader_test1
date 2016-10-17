@@ -3,13 +3,14 @@
 <head>
 <title>index.html</title>
 <script>
-
-
+function loadHandler(){
+alert("load");
+}
 </script>
 </head>
 <body>
   <div id=hidden>
-    <iframe id=loadingFrame></iframe>
+    <iframe id=loadingFrame onLoad="loadHandler();"></iframe>
   </div>
 </body>
 </html>
