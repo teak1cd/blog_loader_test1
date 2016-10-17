@@ -3,9 +3,15 @@
 <head>
 <title>index.html</title>
 <script>
-function loadHandler(){
-alert("load");
-}
+  function loadHandler(){
+    alert("load");
+  }
+  function hider(id){
+    document.getElementById(id).hidden =! document.getElementById(id).hidden; 
+  }
+  function load(pathIP){
+  document.getElementById("loadingFrame").src = "posts/"+pathIP;
+  }
 </script>
 </head>
 <body>
