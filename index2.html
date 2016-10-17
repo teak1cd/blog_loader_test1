@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <style>
+            body {
+                background-color:rgb(20, 20, 20);
+                color:#FFFFFF;
+            }
+            hr {
+                border:1px solid rgb(50, 50, 50);
+            }
+            table {
+                border:3px solid white;
+            }
+            button {
+                -webkit-border-radius: 3;
+                -moz-border-radius: 3;
+                border-radius: 3px;
+                font-family: Arial;
+                color: #ffffff;
+                font-size: 14px;
+                background: #525252;
+                padding: 3px 3px 3px 3px;
+                text-decoration: none;
+                border: solid #1f628d 0px;
+            }
+            button:hover {
+                background: #949494;
+                text-decoration: none;
+            }
+        </style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Encode the world
+        </title>
+        <script>
+            var loadTo = "main";
+            var articles = ["main", "week1_1", "week1_2","week3_1"];
+            function article(art,l) {
+                if(l){
+                  document.getElementById("articles").innerHTML +="<div id="+art+" ></div>";
+                  document.getElementById(art).innerHTML = document.getElementById("frame").contentDocument.body.innerHTML;
+                }
+                if(document.getElementById(art) === null){
+                  document.getElementById("frame").src = "posts/"+art+".html";
+                  document.getElementById("frame").onLoad = "article("+art+",true);
+                }else{
+                  document.getElementById("articles").innerHTML = document.getElementById(art).innerHTML.replace(/%a%/gm, "ARTICLE");
+                }
+            }
+
+            function hider(n) {
+                var d = document.getElementById(n);
+                d.hidden = !d.hidden;
+                return d.hidden;
+            }
+
+            function load() {
+                for (var i = 0; i < articles.length; i++) {
+                    document.getElementById("buttons").innerHTML += "<button onClick=article(\"" + articles[i] + "\"); >" + articles[i].replace(/_/gm, " ") + "</button>|";
+                }
+                hider("buttons");
+                article("main");
+            }
+            window.onload = load;
+        </script>
+    </head>
+
+    <body>
+        <div hidden>
+          <iframe id=frame src="" onLoad=""></iframe>
+        </div>
+        <table style="width:100%;height:100%;text-align:center;border:none;">
+            <tr>
+                <th>
+<h1>Encode the world</h1>
+                    <br/>
+                    <hr/>
+                    <div id=buttons hidden>|</div>
+                    <hr/>
+                    <div id=article></div>
+                    <div id=articles>
+                    </div>
+                    <div id=templates hidden>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </body>
+</html>
