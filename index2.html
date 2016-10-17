@@ -44,7 +44,7 @@
                 }
                 if(document.getElementById(art) === null){
                   document.getElementById("frame").src = "posts/"+art+".html";
-                  document.getElementById("frame").onLoad = "article("+art+",true);
+                  document.getElementById("frame").onLoad = "article("+art+",true)";
                 }else{
                   document.getElementById("articles").innerHTML = document.getElementById(art).innerHTML.replace(/%a%/gm, "ARTICLE");
                 }
