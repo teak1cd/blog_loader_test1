@@ -3,22 +3,15 @@
 <head>
 <title>index.html</title>
 <script>
-function tryload(){
-  var load = true;
-  if(typeof loader !== "function") load = false;
-  if(typeof render !== "function") load = false;
-  if(!load) return cancelLoad();
-  document.body.innerHTML = new Date().getTime();
-}
-function cancelLoad(){
-  setTimeout(tryLoad,1000);
-  return 0;
-}
-window.onLoad=tryLoad;
+
+
 </script>
 <script src=loader.js ></script>
 <script src=canr.js ></script>
 </head>
 <body>
+  <div id=hidden>
+    <iframe id=loadingFrame></iframe>
+  </div>
 </body>
 </html>
