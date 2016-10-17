@@ -37,6 +37,7 @@
         <script>
             var loadTo = "main";
             var articles = ["main", "week1_1", "week1_2","week3_1"];
+            var f;
             function article(art,l) {
                 if(l){
                   document.getElementById("templates").innerHTML +="<div id="+art+" ></div>";
@@ -45,12 +46,17 @@
                 if(document.getElementById(art) === null){
                   loadTo = art;
                   document.getElementById("frame").src = "posts/"+art+".html";
-                  window.setTimeout(l,1000);
+                    document.getElementById("frame").onLoad = "article(\""+art+"\",true)";
+                  window.setTimeout(fload,1000);
                 }else{
                   document.getElementById("articles").innerHTML = document.getElementById(art).innerHTML.replace(/%a%/gm, "ARTICLE");
                 }
             }
-
+function fload(){
+              try{
+                article(loadTo,true);
+              }catch(e){}
+            }
             function hider(n) {
                 var d = document.getElementById(n);
                 d.hidden = !d.hidden;
@@ -65,11 +71,6 @@
                 article("main");
             }
             window.onload = load;
-            function l(){
-              try{
-                article(loadTo,true);
-              }catch(e){}
-            }
         </script>
     </head>
 
