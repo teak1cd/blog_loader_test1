@@ -43,8 +43,9 @@
                   document.getElementById(art).innerHTML = document.getElementById("frame").contentDocument.body.innerHTML;
                 }
                 if(document.getElementById(art) === null){
-                  document.getElementById("frame").onLoad = "article(\""+art+"\",true)";
+                  loadTo = art;
                   document.getElementById("frame").src = "posts/"+art+".html";
+                  window.setTimeout(l,1000);
                 }else{
                   document.getElementById("articles").innerHTML = document.getElementById(art).innerHTML.replace(/%a%/gm, "ARTICLE");
                 }
@@ -65,7 +66,9 @@
             }
             window.onload = load;
             function l(){
-                console.log("loaded frame");
+              try{
+                article(loadTo,true);
+              }catch(e){}
             }
         </script>
     </head>
