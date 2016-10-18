@@ -1,23 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<title>index.html</title>
-<script>
-  function loadHandler(){
-    alert("load");
-  }
-  function hider(id){
-    document.getElementById(id).hidden =! document.getElementById(id).hidden; 
-  }
-  function load(pathIP){
-  document.getElementById("loadingFrame").src = "posts/"+pathIP;
-  }
-</script>
-</head>
-<body>
-  <a href=index2.html>testPage</a>
-  <div id=hidden>
-    <iframe id=loadingFrame onLoad="loadHandler();"></iframe>
-  </div>
-</body>
+
+    <head>
+        <style>
+            body {
+                background-color:rgb(20, 20, 20);
+                color:#FFFFFF;
+            }
+            hr {
+                border:1px solid rgb(50, 50, 50);
+            }
+            table {
+                border:3px solid white;
+            }
+            button {
+                -webkit-border-radius: 3;
+                -moz-border-radius: 3;
+                border-radius: 3px;
+                font-family: Arial;
+                color: #ffffff;
+                font-size: 14px;
+                background: #525252;
+                padding: 3px 3px 3px 3px;
+                text-decoration: none;
+                border: solid #1f628d 0px;
+            }
+            button:hover {
+                background: #949494;
+                text-decoration: none;
+            }
+        </style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Encode the world
+        </title>
+        <script>
+            var loadTo = "main";
+            var articles = ["main", "week1_1", "week1_2","week3_1"];
+            var f;
+            function article(art,l) {
+                if(l){
+                  document.getElementById("templates").innerHTML +="<div id="+art+" ></div>";
+                  document.getElementById(art).innerHTML = document.getElementById("frame").contentDocument.body.innerHTML;
+                }
+                if(document.getElementById(art) === null){
+                  loadTo = art;
+                  document.getElementById("frame").src = "posts/"+art+".html";
+                    document.getElementById("frame").onLoad = "article(\""+art+"\",true)";
+                  window.setTimeout(fload,1000);
+                }else{
+                  document.getElementById("articles").innerHTML = document.getElementById(art).innerHTML.replace(/%a%/gm, "ARTICLE");
+                }
+            }
+function fload(){
+              try{
+                article(loadTo,true);
+              }catch(e){}
+            }
+            function hider(n) {
+                var d = document.getElementById(n);
+                d.hidden = !d.hidden;
+                return d.hidden;
+            }
+
+            function load() {
+                for (var i = 0; i < articles.length; i++) {
+                    document.getElementById("buttons").innerHTML += "<button onClick=article(\"" + articles[i] + "\"); >" + articles[i].replace(/_/gm, " ") + "</button>|";
+                }
+                hider("buttons");
+                article("main");
+            }
+            function l(){
+                console.log("l");
+            }
+            window.onload = load;
+        </script>
+    </head>
+
+    <body>
+        <div id=templates hidden>
+                    </div>
+        <div hidden>
+          <iframe id=frame src="about:blank" onLoad="l();"></iframe>
+        </div>
+        <table style="width:100%;height:100%;text-align:center;border:none;">
+            <tr>
+                <th>
+<h1>Encode the world</h1>
+                    <br/>
+                    <hr/>
+                    <div id=buttons hidden>|</div>
+                    <hr/>
+                    <div id=article></div>
+                    <div id=articles>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </body>
 </html>
