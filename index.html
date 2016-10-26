@@ -69,7 +69,7 @@ function fload(){
                 }
                 hider("buttons");
                 var __j = window.location.search.split("?");
-                if(__j[1]!==""){
+                if(__j[1]!==undefined){
                     loadTo = __j[1];
                 }
                 article(loadTo);
