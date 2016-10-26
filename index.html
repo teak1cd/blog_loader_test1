@@ -68,7 +68,7 @@ function fload(){
                     document.getElementById("buttons").innerHTML += "<button onClick=article(\"" + articles[i] + "\"); >" + articles[i].replace(/_/gm, " ") + "</button>|";
                 }
                 hider("buttons");
-                var __j = window.location.split("?");
+                var __j = window.location.search.split("?");
                 if(__j[1]!==""){
                     loadTo = __j[1];
                 }
